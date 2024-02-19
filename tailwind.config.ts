@@ -8,10 +8,21 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
+
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "blue-text-title": "#243757",
+        "dark-purple": "#2c003e",
+        "mid-purple": "#600047",
+        "light-purple": "#8b004f",
+        "dark-red": "#b30054",
+        "mid-red": "#d90057",
+        "light-red": "#ff005a",
+      },
+    },
   },
-  darkmode:"class",
-  plugins: [nextui()]
+  darkMode: "class",
+  plugins: [nextui()],
 };
 export default config;

@@ -14,6 +14,8 @@ import React, { useState } from "react";
 import { Architects_Daughter } from "next/font/google";
 import { apiClient } from "@/lib";
 import { ADMIN_API_ROUTES } from "@/utils";
+import { useAppStore } from "@/store";
+import { useRouter } from "next/navigation";
 
 const ArchitectsDaughter = Architects_Daughter({
   weight: "400",
@@ -24,6 +26,8 @@ const ArchitectsDaughter = Architects_Daughter({
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const {setUserInfo} = useAppStore();
+  const router = useRouter();
 
   const handleLogin = async () => {
      // every api should be in try-catch block to prevent the error in site
@@ -33,6 +37,8 @@ const Login = () => {
       password,
     });
     if (response.data.userInfo) {
+      setUserInfo(response.data.userInfo);
+      router.push("/admin")
     }
     } catch (error){
       console.log(error);

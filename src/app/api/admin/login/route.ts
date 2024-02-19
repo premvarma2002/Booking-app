@@ -22,9 +22,11 @@ export async function POST(request: Request) {
             {status: 400}
             )
     }
-    const user = await prisma.admin.findUnique({where:{ email, password }});
-    console.log({password: sha256(password).toString()})
-    if(!user){
+    const user = await prisma.admin.findUnique({
+      where:{ email, password: sha256(password).toString() }
+    });
+
+    if(!user){  
         return NextResponse.json(
             {message:"Invalid email or password"},
             {status: 404}
