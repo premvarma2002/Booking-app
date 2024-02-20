@@ -16,3 +16,12 @@ model Admin {
   password String
   createdAt DateTime @default(now())
 }
+
+model Jobs {
+  id Int @default(autoincrement()) @id
+  url String
+  isComplete Boolean @default(false)
+  status String @default("active")
+  jobType Json
+  createdAt DateTime @default(now())
+}
