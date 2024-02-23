@@ -25,3 +25,21 @@ model Jobs {
   jobType Json
   createdAt DateTime @default(now())
 }
+
+
+model Trips {
+  id String @id @unique
+  name String
+  nights Int
+  days Int
+  destinationItinerary Json
+  images Json
+  inclusions Json
+  themes Json
+  price Int
+  destinationDetails Json
+  detailedItinerary Json
+  description String
+  packageItinerary Json
+  scrappedOn DateTime @default(now())
+}
