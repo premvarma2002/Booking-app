@@ -55,11 +55,11 @@ export const register = async () => {
                 job.data.packageDetails
               );
               console.log(pkg);
-              // await prisma.trips.create({data: pkg });
-              // await prisma.jobs.update({
-              //   where: { id: job.data.id },
-              //   data: { isComplete: true, status: "complete" },
-              // });
+              await prisma.trips.create({data: pkg });
+              await prisma.jobs.update({
+                where: { id: job.data.id },
+                data: { isComplete: true, status: "complete" },
+              });
             }
           }
         } catch (error) {
