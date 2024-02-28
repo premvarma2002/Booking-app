@@ -47,5 +47,5 @@ export interface DestinationItineraryType {
     detailedItinerary: DetailedItineraryType[];
     description: string;
     packageItinerary: PackageItineraryType[];
-    scrapedOn: string;
+    scrappedOn: string;
   }
