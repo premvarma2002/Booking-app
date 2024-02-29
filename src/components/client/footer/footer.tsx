@@ -20,7 +20,7 @@ const Footer = () => {
   const router = useRouter();
   return (
     <footer
-      className="min-h-[20vh] px-48 py-10 relative bg-cover bg-center bg-no-repeat"
+      className="min-h-[20vh] w-full px-48 py-10 relative bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: 'url("/home/home-bg.png")',
       }}

@@ -25,7 +25,7 @@ const ArchitectsDaughter = Architects_Daughter({
   subsets: ["latin"],
 });
 
-const Navbar = ({ onOpen }: { onOpen: () => void }) => {
+const Navbar = () => {
   const router = useRouter();
   const pathname = usePathname();
   const { userInfo } = useAppStore();
@@ -106,7 +106,6 @@ const Navbar = ({ onOpen }: { onOpen: () => void }) => {
             <>
               <NavbarItem className="hidden lg:flex">
                 <Button
-                  onPress={onOpen}
                   color="secondary"
                   variant="flat"
                   className="text-purple-500"
@@ -118,7 +117,6 @@ const Navbar = ({ onOpen }: { onOpen: () => void }) => {
                 <Button
                   as={Button}
                   color="danger"
-                  onPress={onOpen}
                   variant="flat"
                 >
                   Sign Up
