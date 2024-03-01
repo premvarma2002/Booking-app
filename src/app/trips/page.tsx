@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { TripType } from '@/types/trips';
 import { USER_API_ROUTES } from '@/utils/api-routes';
@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react'
 const Trips = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const searchCity = searchParams.get('city');
+  const searchCity = searchParams.get("city");
   const [trips, setTrips] = useState<TripType[]>([]);
 
 
