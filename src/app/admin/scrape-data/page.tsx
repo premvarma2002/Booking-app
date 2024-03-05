@@ -1,7 +1,6 @@
 "use client";
 
 import { ScrapingQueue } from "@/components/admin/scraping-queue";
-import { apiClient } from "@/lib";
 import { ADMIN_API_ROUTES } from "@/utils";
 
 import {
