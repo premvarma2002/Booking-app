@@ -24,7 +24,7 @@ const Trip = ({ params: { tripId } }: { params: { tripId: string } }) => {
     if (tripId) {
       fetchTripData();
     }
-  },[tripId]);
+  }, [tripId]);
   return (
     <div>
       {tripData && (

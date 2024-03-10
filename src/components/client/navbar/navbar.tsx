@@ -114,11 +114,7 @@ const Navbar = () => {
                 </Button>
               </NavbarItem>
               <NavbarItem>
-                <Button
-                  as={Button}
-                  color="danger"
-                  variant="flat"
-                >
+                <Button as={Button} color="danger" variant="flat">
                   Sign Up
                 </Button>
               </NavbarItem>
