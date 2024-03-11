@@ -10,8 +10,8 @@ export async function GET(request: Request) {
     if (city) {
       const allTrips = await prisma.trips.findMany();
       const filteredTrips = allTrips.filter((trip) => {
-        const destinationItinenary = trip.destinationItinerary || [];
-        return destinationItinenary.some(
+        const destinationItinerary = trip.destinationItinerary || [];
+        return destinationItinerary.some(
           (destination) =>
             destination.place.toLowerCase() === city.toLowerCase()
         );
