@@ -3,6 +3,7 @@
 import { useAppStore } from "@/store";
 import { TripType } from "@/types/trips";
 import { USER_API_ROUTES } from "@/utils/api-routes";
+import { Images } from "./components/images";
 import { Button, Input, Tab, Tabs } from "@nextui-org/react";
 import axios from "axios";
 import Image from "next/image";
@@ -15,7 +16,6 @@ import {
   FaCheck,
   FaFacebook,
   FaInstagram,
-  FaTwitter,
   FaWhatsapp,
 } from "react-icons/fa"
 import { Itinerary } from "./components/Itinerary";
@@ -54,6 +54,7 @@ const Trip = ({ params: { tripId } }: { params: { tripId: string } }) => {
     <div>
       {tripData && (
         <>
+          <Images images={tripData?.images} />
           <div className="grid grid-cols-3 my-10 gap-10 mx-32">
             <div className="col-span-2 ">
               <div className="bg-white px-5 py-5 rounded-lg flex flex-col gap-10 text-blue-text-title">
@@ -85,16 +86,19 @@ const Trip = ({ params: { tripId } }: { params: { tripId: string } }) => {
                       </li>
                       <li>
                         <span>Duration: </span>
-                        <span>
+                        <span className="text-blue-500">
                           {tripData.days} Days, {tripData.nights} Nights
                         </span>
                       </li>
                       <li className="flex gap-4">
                         <span>Locations Covered: </span>
-                        <ul className="flex flex-col gap-5">
-                          {tripData.destinationItinerary.map((destination) => {
+                        <ul className="flex flex-col gap-5 ">
+                          {tripData?.destinationItinerary.map((destination) => {
                             return (
-                              <li key={destination.place}>
+                              <li
+                                className="flex items-center   w-full text-blue-500"
+                                key={destination.place}
+                              >
                                 <span>{destination.place}</span>
                                 <span>
                                   &nbsp;{destination.totalNights} nights
@@ -107,71 +111,76 @@ const Trip = ({ params: { tripId } }: { params: { tripId: string } }) => {
                     </ul>
                   </div>
                 </div>
-                <div className="px-10 py-10 bg-[#F5F5Fe] rounded-lg border border-gray-200 gap-3 flex flex-col">
+                <div className="px-10 py-10 bg-[#f5f5fe] rounded-lg border border-gray-200 gap-3 flex flex-col">
                   <h3 className="text-2xl">
                     <strong className="font-medium">Overview</strong>
                   </h3>
-                  <p>{tripData.description}</p>
+                  <p>{tripData?.description}</p>
                 </div>
-                <div className="px-10 py-10 bg-[#F5F5Fe] rounded-lg border border-gray-200 gap-3 flex flex-col">
+                <div className="px-10 py-10 bg-[#f5f5fe] rounded-lg border border-gray-200 gap-3 flex flex-col">
                   <h3 className="text-2xl">
-                    <strong className="font-medium">Tour Hightlights</strong>
+                    <strong className="font-medium">Tour Highlights</strong>
                   </h3>
-                  <ul className="grid grid-cols-5 gap-5 mt-3">
-                    {tripData.themes.map((theme) => (
-                      <li key={theme} className="flex gap-2 items-center">
-                        <span className="text-sm text-blue-500 bg-blue-200 p-2 rounded-full">
+                  <ul className="grid grid-cols-4 gap-5 mt-3">
+                    {tripData?.themes.map((theme) => (
+                      <li className="flex gap-2 items-center " key={theme}>
+                        <span className="text-sm text-blue-500 bg-blue-100 p-2 rounded-full">
                           <FaCheck />
                         </span>
                         <span>{theme}</span>
                       </li>
                     ))}
-                    {tripData.inclusions.map((theme) => (
-                      <li key={theme} className="flex gap-2 items-center">
-                        <span className="text-sm text-blue-500 bg-blue-200 p-2 rounded-full">
+                    {tripData?.inclusions.map((theme) => (
+                      <li className="flex gap-2 items-center" key={theme}>
+                        <span className="text-sm text-blue-500 bg-blue-100 p-2 rounded-full">
                           <FaCheck />
                         </span>
                         <span>{theme}</span>
                       </li>
                     ))}
+                    <li></li>
                   </ul>
                 </div>
-                <div className="px-10 py-10 bg-[#F5F5Fe] rounded-lg border border-gray-200 gap-3 flex flex-col">
+                <div className="px-10 py-10 bg-[#f5f5fe] rounded-lg border border-gray-200 gap-3 flex flex-col">
                   <h3 className="text-2xl">
                     <strong className="font-medium">Itinerary</strong>
                   </h3>
                   <div>
-                    <Itinerary data={tripData.detailedItinerary}/>
+                    <Itinerary data={tripData.detailedItinerary} />
                   </div>
                 </div>
-                <div className="px-10 py-10 bg-[#F5F5Fe] rounded-lg border border-gray-200 gap-3 flex flex-col">
+                <div className="px-10 py-10 bg-[#f5f5fe] rounded-lg border border-gray-200 gap-3 flex flex-col">
                   <h3 className="text-2xl">
                     <strong className="font-medium">Location Overview</strong>
                   </h3>
                   <div>
                     <Tabs variant="bordered" color="primary">
-                      {
-                        tripData.destinationDetails.map(city=><Tab key={city.name} title={city.name} className="flex gap-5">
+                      {tripData.destinationDetails.map((city) => (
+                        <Tab
+                          key={city.name}
+                          title={city.name}
+                          className="flex gap-5"
+                        >
                           <div className="relative h-[200px] w-[20vw]">
-                            <Image src={city.image} fill alt={city.name}/>
+                            <Image src={city.image} alt={city.name} fill />
                           </div>
                           <p className="flex-1">{city.description}</p>
-                        </Tab>)
-                      }
+                        </Tab>
+                      ))}
                     </Tabs>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="bg-white p-5 rounded-lg flex  flex-col gap-10 h-max text-blue-text-title">
-              <div className="flex flex-col gap-3">
+            <div className="bg-white px-5 py-5 rounded-lg flex flex-col gap-10 h-max text-blue-text-title">
+              <div className="flex flex-col gap-3 ">
                 <h1 className="font-medium text-2xl">Price</h1>
                 <div className="flex gap-2 items-center justify-between">
                   <div className="flex gap-2">
-                    <IoPricetag className="text-3xl"/>
+                    <IoPricetag className="text-3xl" />
                     <span className="text-2xl">From</span>
                   </div>
-                  <span className="text-4xl font-bold">₹{tripData.price}</span>
+                  <span className="text-4xl font-bold ">₹{tripData.price}</span>
                 </div>
               </div>
               <div className="flex flex-col gap-5">
@@ -187,7 +196,7 @@ const Trip = ({ params: { tripId } }: { params: { tripId: string } }) => {
                   type="number"
                 />
               </div>
-              <ul className="flex flex-col gap-2">
+              <ul className=" flex flex-col gap-2 ">
                 <li className="flex justify-between">
                   <span>Base Price</span>
                   <span>₹{tripData.price}</span>
@@ -197,19 +206,26 @@ const Trip = ({ params: { tripId } }: { params: { tripId: string } }) => {
                   <span>₹800</span>
                 </li>
                 <li className="flex justify-between">
-                  <span>Night Price</span>
+                  <span>Night Charge</span>
                   <span>₹500</span>
                 </li>
                 <li className="flex justify-between">
-                  <span>Convenience Fee</span>
+                  <span>Convience Fee</span>
                   <span>₹2000</span>
                 </li>
                 <li className="flex justify-between">
-                  <span>Total Price</span>
-                  <span>₹{tripData.price +3300}</span>
+                  <span>Total</span>
+                  <span>₹{tripData.price + 3300}</span>
                 </li>
               </ul>
-              <Button color="primary" size="lg" className="rounded-full" onClick={() => userInfo && bookTrip()}>
+              <Button
+                color="primary"
+                size="lg"
+                className="rounded-full"
+                onClick={() => {
+                  userInfo && bookTrip();
+                }}
+              >
                 {userInfo ? "Book Trip" : "Login to Book Trip"}
               </Button>
             </div>
