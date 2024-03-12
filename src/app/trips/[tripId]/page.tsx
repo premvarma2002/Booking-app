@@ -3,7 +3,7 @@
 import { useAppStore } from "@/store";
 import { TripType } from "@/types/trips";
 import { USER_API_ROUTES } from "@/utils/api-routes";
-import { Input, Tab, Tabs } from "@nextui-org/react";
+import { Button, Input, Tab, Tabs } from "@nextui-org/react";
 import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -18,6 +18,7 @@ import {
   FaTwitter,
   FaWhatsapp,
 } from "react-icons/fa"
+import { Itinerary } from "./components/Itinerary";
 
 const Trip = ({ params: { tripId } }: { params: { tripId: string } }) => {
   const router = useRouter();
@@ -43,6 +44,10 @@ const Trip = ({ params: { tripId } }: { params: { tripId: string } }) => {
       ? new Date(event.target.value)
       : new Date();
     setDate(newDate);
+  };
+
+  const bookTrip = async () => {
+
   };
 
   return (
@@ -135,7 +140,9 @@ const Trip = ({ params: { tripId } }: { params: { tripId: string } }) => {
                   <h3 className="text-2xl">
                     <strong className="font-medium">Itinerary</strong>
                   </h3>
-                  <div></div>
+                  <div>
+                    <Itinerary data={tripData.detailedItinerary}/>
+                  </div>
                 </div>
                 <div className="px-10 py-10 bg-[#F5F5Fe] rounded-lg border border-gray-200 gap-3 flex flex-col">
                   <h3 className="text-2xl">
@@ -180,6 +187,31 @@ const Trip = ({ params: { tripId } }: { params: { tripId: string } }) => {
                   type="number"
                 />
               </div>
+              <ul className="flex flex-col gap-2">
+                <li className="flex justify-between">
+                  <span>Base Price</span>
+                  <span>₹{tripData.price}</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>State Price</span>
+                  <span>₹800</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Night Price</span>
+                  <span>₹500</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Convenience Fee</span>
+                  <span>₹2000</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Total Price</span>
+                  <span>₹{tripData.price +3300}</span>
+                </li>
+              </ul>
+              <Button color="primary" size="lg" className="rounded-full" onClick={() => userInfo && bookTrip()}>
+                {userInfo ? "Book Trip" : "Login to Book Trip"}
+              </Button>
             </div>
           </div>
         </>
