@@ -1,3 +1,5 @@
+"use client"
+
 import { AuthModal } from "@/components/client/auth-modal";
 import { Footer } from "@/components/client/footer";
 import { Navbar } from "@/components/client/navbar";
