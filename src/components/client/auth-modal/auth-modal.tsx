@@ -40,27 +40,27 @@ const AuthModal = ({
   const [password, setPassword] = useState("");
 
   const handleSignup = async (onClose: () => void) => {
-    // const response = await apiClient.post(USER_API_ROUTES.SIGNUP, {
-    //   firstName: firstName,
-    //   lastName: lastName,
-    //   email: email,
-    //   password: password,
-    // };
-    // if (response.data.userInfo) {
-    //   setUserInfo(response.data.userInfo);
-    //   onClose();
-    // }
+    const response = await apiClient.post(USER_API_ROUTES.SIGNUP, {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+    });
+    if (response.data.userInfo) {
+      setUserInfo(response.data.userInfo);
+      onClose();
+    }
   };
 
   const handleLogin = async (onClose: () => void) => {
-    // const response = await apiClient.post(USER_API_ROUTES.LOGIN, {
-    //   email,
-    //   password,
-    // });
-    // if (response.data.userInfo) {
-    //   setUserInfo(response.data.userInfo);
-    //   onClose();
-    // }
+    const response = await apiClient.post(USER_API_ROUTES.LOGIN, {
+      email,
+      password,
+    });
+    if (response.data.userInfo) {
+      setUserInfo(response.data.userInfo);
+      onClose();
+    }
   };
 
   const switchModalType = () => {

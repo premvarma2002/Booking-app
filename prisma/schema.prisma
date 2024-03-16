@@ -17,6 +17,15 @@ model Admin {
   createdAt DateTime @default(now())
 }
 
+model User {
+  id Int @default(autoincrement()) @id
+  email String @unique
+  firstName String
+  lastName String
+  password String
+  createdAt DateTime @default(now())
+}
+
 model Jobs {
   id Int @default(autoincrement()) @id
   url String
