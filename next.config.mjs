@@ -6,6 +6,7 @@ const nextConfig = {
     env:{
         NEXT_PUBLIC_DOMAIN:"http://localhost:3000",
     },
+
     images:{
         remotePatterns:[
             {hostname:"imgcld.yatra.com"}
